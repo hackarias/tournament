@@ -22,12 +22,11 @@ def delete_matches():
     query = "DELETE FROM Matches;"
     try:
         conn.execute(query)
-        print query + "was deleted from the database."
+        print(query + "was deleted from the database.")
     except:
-        print "Something went wrong. Couldn't delete matches from database"
+        print("Something went wrong. Couldn't delete matches from database")
     db.commit()
     db.close()
-
 
 
 def delete_players():
@@ -39,9 +38,9 @@ def delete_players():
     query = "DELETE FROM Players;"
     try:
         conn.execute(query)
-        print query + "was delete from the database."
+        print(query + "was delete from the database.")
     except:
-        print "Something went wrong. Couldn't delete players from database"
+        print("Something went wrong. Couldn't delete players from database")
     db.commit()
     db.close()
 
@@ -55,9 +54,9 @@ def count_players():
     query = "SELECT count(*) FROM Players;"
     try:
         conn.execute(query)
-        print "There are " + query + "players in the tournament"
+        print("There are " + query + "players in the tournament")
     except:
-        print "Something went wrong. Couldn't count players from database"
+        print("Something went wrong. Couldn't count players from database")
     db.close()
 
 
@@ -74,10 +73,13 @@ def register_player(name):
     db = connect()
     conn = db.cursor()
     query = "INSERT INTO Players(name) VALUES (%s);"
-    conn.execute(query, name)
+    try:
+        conn.execute(query, name)
+        print(query + "was added to the database.")
+    except:
+        print("Something went wrong. Couldn't add player to the database.")
     db.commit()
     db.close()
-    print query + "was added to the database."
 
 
 def player_standings():
@@ -94,6 +96,14 @@ def player_standings():
         wins: the number of matches the player has won
         matches: the number of matches the player has played
     """
+    db = connect()
+    conn = db.cursor()
+    query = "SELECT * FROM v_leaderbord;"
+    try:
+        conn.execute(query)
+        print("Listing scoreboard")
+    except:
+        print("Seomthing went wrong. Couldn't list scoreboard.")
 
 
 def report_match(winner, loser):

@@ -10,7 +10,6 @@ DROP DATABASE tournament;
 CREATE DATABASE tournament;
 \c tournament;
 
-
 CREATE TABLE Players(
   id          SERIAL PRIMARY KEY,
   name        TEXT,
@@ -26,11 +25,9 @@ CREATE TABLE Matches(
   loser_id      INT REFERENCES Players(id)
 );
 
-
 CREATE VIEW v_leaderboard AS
   SELECT * FROM Players
   ORDER BY games_won DESC;
-
 
 INSERT INTO Players(name) VALUES ('Frank');
 INSERT INTO Players(name) VALUES ('Jonas');
