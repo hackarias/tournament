@@ -18,20 +18,18 @@ CREATE TABLE Players(
 );
 
 CREATE TABLE Matches(
-  match_id      SERIAL PRIMARY KEY,
-  winner_name   TEXT REFERENCES Players(name),
-  winner_id     INT REFERENCES Players(id),
-  loser_name    TEXT REFERENCES Players(name),
-  loser_id      INT REFERENCES Players(id)
+  match_id      SERIAL PRIMARY KEY
 );
 
 CREATE VIEW v_leaderboard AS
   SELECT * FROM Players
   ORDER BY games_won DESC;
 
-INSERT INTO Players(name) VALUES ('Frank');
-INSERT INTO Players(name) VALUES ('Jonas');
-INSERT INTO Players(name) VALUES ('Martin');
-INSERT INTO Players(name) VALUES ('Froudymus Benedictalia');
-INSERT INTO Players(name) VALUES ('Dropbox Ferrari');
-INSERT INTO Players(name) VALUES ('Rhino Gucci');
+INSERT INTO Players(id, name, games_won, games_lost) VALUES (1, 'Frank', 1, 2);
+INSERT INTO Players(id, name, games_won, games_lost) VALUES (2, 'Hank', 1, 3);
+INSERT INTO Players(id, name, games_won, games_lost) VALUES (3, 'Shank', 1, 1);
+INSERT INTO Players(id, name, games_won, games_lost) VALUES (4, 'Krank', 3, 0);
+INSERT INTO Players(id, name, games_won, games_lost) VALUES (5, 'Lank', 0, 3);
+INSERT INTO Players(id, name, games_won, games_lost) VALUES (6, 'Tank', 2, 1);
+
+INSERT INTO Matches VALUES (1)

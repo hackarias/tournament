@@ -10,54 +10,46 @@ def connect():
     """
     Connect to the PostgreSQL database.  Returns a database connection.
     """
-    return psycopg2.connect("dbname=tournament")
+    conn_string = "dbname=tournament"
+    return psycopg2.connect(conn_string)
 
 
 def delete_matches():
     """
     Remove all the match records from the database.
     """
-    db = connect()
-    conn = db.cursor()
-    query = "DELETE FROM Matches;"
-    try:
-        conn.execute(query)
-        print(query + "was deleted from the database.")
-    except:
-        print("Something went wrong. Couldn't delete matches from database")
-    db.commit()
-    db.close()
+    conn = connect()
+    cursor = conn.cursor()
+    query = "DELETE FROM Matches"
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
 
 
 def delete_players():
     """
     Remove all the player records from the database.
+    TODO: delete one or more players exclusively
     """
-    db = connect()
-    conn = db.cursor()
-    query = "DELETE FROM Players;"
-    try:
-        conn.execute(query)
-        print(query + "was delete from the database.")
-    except:
-        print("Something went wrong. Couldn't delete players from database")
-    db.commit()
-    db.close()
+    conn = connect()
+    cursor = conn.cursor()
+    query = "DELETE FROM Players where id <> 0"
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
 
 
 def count_players():
     """
     Returns the number of players currently registered.
     """
-    db = connect()
-    conn = db.cursor()
-    query = "SELECT count(*) FROM Players;"
-    try:
-        conn.execute(query)
-        print("There are " + query + "players in the tournament")
-    except:
-        print("Something went wrong. Couldn't count players from database")
-    db.close()
+    conn = connect()
+    cursor = conn.cursor()
+    query = "SELECT count(*) FROM Players"
+    cursor.execute(query)
+    cursor.fetchone()
+    conn.close()
+    return len(query)
 
 
 def register_player(name):
@@ -70,16 +62,12 @@ def register_player(name):
     Args:
       name: the player's full name (need not be unique).
     """
-    db = connect()
-    conn = db.cursor()
-    query = "INSERT INTO Players(name) VALUES (%s);"
-    try:
-        conn.execute(query, name)
-        print(query + "was added to the database.")
-    except:
-        print("Something went wrong. Couldn't add player to the database.")
-    db.commit()
-    db.close()
+    conn = connect()
+    cursor = conn.cursor()
+    query = "INSERT INTO Players(name) VALUES (%s)", name
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
 
 
 def player_standings():
@@ -96,14 +84,11 @@ def player_standings():
         wins: the number of matches the player has won
         matches: the number of matches the player has played
     """
-    db = connect()
-    conn = db.cursor()
-    query = "SELECT * FROM v_leaderbord;"
-    try:
-        conn.execute(query)
-        print("Listing scoreboard")
-    except:
-        print("Seomthing went wrong. Couldn't list scoreboard.")
+    conn = connect()
+    cursor = conn.cursor()
+    query = "SELECT * FROM v_leaderbord"
+    cursor.execute(query)
+    conn.close()
 
 
 def report_match(winner, loser):
