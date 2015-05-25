@@ -45,11 +45,11 @@ def count_players():
     """
     conn = connect()
     cursor = conn.cursor()
-    query = "SELECT count(*) FROM Players"
+    query = "SELECT COUNT(id) FROM Players"
     cursor.execute(query)
-    cursor.fetchone()
+    row = cursor.fetchone()
     conn.close()
-    return len(query)
+    return row[0]
 
 
 def register_player(name):
