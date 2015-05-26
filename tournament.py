@@ -33,7 +33,7 @@ def delete_players():
     """
     conn = connect()
     cursor = conn.cursor()
-    query = "DELETE FROM Players where id <> 0"
+    query = "DELETE FROM Players"
     cursor.execute(query)
     conn.commit()
     conn.close()
@@ -49,7 +49,7 @@ def count_players():
     cursor.execute(query)
     row = cursor.fetchone()
     conn.close()
-    return row[0]
+    return row[0]  # NO. This is a very ugly hack. TODO TODO TODO
 
 
 def register_player(name):
@@ -64,8 +64,8 @@ def register_player(name):
     """
     conn = connect()
     cursor = conn.cursor()
-    query = "INSERT INTO Players(name) VALUES (%s)", name
-    cursor.execute(query)
+    query = "INSERT INTO Players(name) VALUES (%s)"
+    cursor.execute(query, (name,))
     conn.commit()
     conn.close()
 
