@@ -45,11 +45,11 @@ def count_players():
     """
     conn = connect()
     cursor = conn.cursor()
-    query = "SELECT COUNT(id) FROM Players"
+    query = "SELECT COUNT(player_id) FROM Players"
     cursor.execute(query)
     row = cursor.fetchone()
     conn.close()
-    return row[0]  # NO. This is a very ugly hack. TODO TODO TODO
+    return row[0]  # NO. This is a very ugly hack. TODO
 
 
 def register_player(name):
@@ -64,7 +64,7 @@ def register_player(name):
     """
     conn = connect()
     cursor = conn.cursor()
-    query = "INSERT INTO Players(name) VALUES (%s)"
+    query = "INSERT INTO Players(player_name) VALUES (%s)"
     cursor.execute(query, (name,))
     conn.commit()
     conn.close()
@@ -86,9 +86,11 @@ def player_standings():
     """
     conn = connect()
     cursor = conn.cursor()
-    query = "SELECT * FROM v_leaderbord"
+    query = "SELECT * FROM v_player_summary"
     cursor.execute(query)
+    standings = cursor.fetchall()
     conn.close()
+    return standings
 
 
 def report_match(winner, loser):
@@ -99,6 +101,15 @@ def report_match(winner, loser):
       winner:  the id number of the player who won
       loser:  the id number of the player who lost
     """
+    conn = connect()
+    cursor = conn.cursor()
+
+    # create a match
+    cursor.execute(
+        "INSERT INTO Matches(winner, loser) VALUES(%s, %s)", (winner, loser)
+    )
+    conn.commit()
+    conn.close()
 
 
 def swiss_pairings():

@@ -57,6 +57,7 @@ def test_register_count_delete():
     print "5. Players can be registered and deleted."
 
 
+# TODO
 def test_standings_before_matches():
     delete_matches()
     delete_players()
@@ -137,6 +138,6 @@ if __name__ == '__main__':
     test_register()
     test_register_count_delete()
     test_standings_before_matches()
-    # test_report_matches()
+    test_report_matches()
     # test_pairings()
     print "Success!  All tests pass!"

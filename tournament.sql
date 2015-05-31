@@ -11,26 +11,24 @@ CREATE DATABASE tournament;
 \c tournament;
 
 CREATE TABLE Players(
-  id          SERIAL PRIMARY KEY AUTOINCREMENT,
-  name        TEXT,
-  games_won   INT,
-  games_lost  INT
+  id      SERIAL PRIMARY KEY,
+  name    TEXT,
+  wins    INT DEFAULT 0,
+  matches INT DEFAULT 0
 );
 
 CREATE TABLE Matches(
-  match_id      SERIAL PRIMARY KEY
+  match_id  SERIAL PRIMARY KEY,
+  winner    INT REFERENCES Players(id),
+  loser     INT REFERENCES Players(id)
 );
 
-CREATE VIEW v_leaderboard AS
-  SELECT * FROM Players
-  ORDER BY games_won DESC;
-
-
-INSERT INTO Players(name, games_won, games_lost) VALUES ('Frank', 1, 2);
-INSERT INTO Players(name, games_won, games_lost) VALUES ('Hank', 1, 3);
-INSERT INTO Players(name, games_won, games_lost) VALUES ('Shank', 1, 1);
-INSERT INTO Players(name, games_won, games_lost) VALUES ('Krank', 3, 0);
-INSERT INTO Players(name, games_won, games_lost) VALUES ('Lank', 0, 3);
-INSERT INTO Players(name, games_won, games_lost) VALUES ('Tank', 2, 1);
-
-INSERT INTO Matches VALUES (1)
+CREATE VIEW v_scoreboard AS
+SELECT player.name, winner, COUNT(*) AS wins
+FROM Matches
+GROUP BY winner;
+--
+-- select players.name, matches.match_id, matches.winner
+-- from matches
+-- join players
+-- on matches.winner = players.id;
