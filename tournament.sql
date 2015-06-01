@@ -24,11 +24,4 @@ CREATE TABLE Matches(
 );
 
 CREATE VIEW v_scoreboard AS
-SELECT player.name, winner, COUNT(*) AS wins
-FROM Matches
-GROUP BY winner;
---
--- select players.name, matches.match_id, matches.winner
--- from matches
--- join players
--- on matches.winner = players.id;
+  SELECT id, name, wins, matches FROM Players;

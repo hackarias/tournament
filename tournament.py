@@ -45,7 +45,7 @@ def count_players():
     """
     conn = connect()
     cursor = conn.cursor()
-    query = "SELECT COUNT(player_id) FROM Players"
+    query = "SELECT COUNT(id) FROM Players"
     cursor.execute(query)
     row = cursor.fetchone()
     conn.close()
@@ -64,7 +64,7 @@ def register_player(name):
     """
     conn = connect()
     cursor = conn.cursor()
-    query = "INSERT INTO Players(player_name) VALUES (%s)"
+    query = "INSERT INTO Players(name) VALUES (%s)"
     cursor.execute(query, (name,))
     conn.commit()
     conn.close()
@@ -86,7 +86,7 @@ def player_standings():
     """
     conn = connect()
     cursor = conn.cursor()
-    query = "SELECT * FROM v_player_summary"
+    query = "SELECT * FROM v_scoreboard"
     cursor.execute(query)
     standings = cursor.fetchall()
     conn.close()
@@ -105,9 +105,19 @@ def report_match(winner, loser):
     cursor = conn.cursor()
 
     # create a match
-    cursor.execute(
-        "INSERT INTO Matches(winner, loser) VALUES(%s, %s)", (winner, loser)
-    )
+    query = "INSERT INTO Matches(winner, loser) VALUES(%s, %s)"
+    cursor.execute(query, (winner, loser))
+    conn.commit()
+
+    # Add 1 to matches and 1 to wins for the winning player.
+    cursor.execute("UPDATE Players SET wins=wins + 1 WHERE id = %s",
+        (winner,))
+    cursor.execute("UPDATE Players SET matches=matches + 1 WHERE id = %s",
+                   (winner,))
+    conn.commit()
+    # Add 1 to matches and leave wins for the losing player.
+    cursor.execute("UPDATE Players SET matches=matches + 1 WHERE id = %s",
+                   (loser,))
     conn.commit()
     conn.close()
 
