@@ -86,7 +86,7 @@ def player_standings():
     """
     conn = connect()
     cursor = conn.cursor()
-    query = "SELECT * FROM v_scoreboard"
+    query = "SELECT * FROM v_player_summary"
     cursor.execute(query)
     standings = cursor.fetchall()
     conn.close()

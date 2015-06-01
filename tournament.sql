@@ -23,5 +23,5 @@ CREATE TABLE Matches(
   loser     INT REFERENCES Players(id)
 );
 
-CREATE VIEW v_scoreboard AS
+CREATE VIEW v_player_summary AS
   SELECT id, name, wins, matches FROM Players;
