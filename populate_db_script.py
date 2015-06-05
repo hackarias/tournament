@@ -17,13 +17,13 @@ the_players = [
 
 
 def register_player_updated(player_id, name):
-    """Add a player to the tournament database.
+    """
+    Add a player to the tournament database. The database assigns a
+    unique serial id number for the player.  (This should be handled by
+    your SQL database schema, not in your Python code.)
 
-    The database assigns a unique serial id number for the player.  (This
-    should be handled by your SQL database schema, not in your Python code.)
-
-    Args:
-      name: the player's full name (need not be unique).
+    :param player_id: the players id.
+    :param name: the player's full name (need not be unique).
     """
     db = connect()
     db_cursor = db.cursor()
@@ -34,6 +34,13 @@ def register_player_updated(player_id, name):
 
 
 def create_random_matches(player_list, num_matches):
+    """
+    Creates random matches to populate the database with players and
+    matches.
+
+    :param player_list: a list of players to register.
+    :param num_matches: the numbers of matches to register.
+    """
     num_players = len(player_list)
     for i in xrange(num_matches):
         print 'match1'
@@ -54,6 +61,10 @@ def create_random_matches(player_list, num_matches):
 
 
 def setup_players_and_matches():
+    """
+    Registers 2 players and registers 100 random matches.
+
+    """
     test_delete()
     for player in the_players:
         register_player_updated(player[0], player[1])

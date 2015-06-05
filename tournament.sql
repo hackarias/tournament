@@ -25,3 +25,4 @@ CREATE TABLE Matches(
 
 CREATE VIEW v_player_summary AS
   SELECT * FROM Players;
+

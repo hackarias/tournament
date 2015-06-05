@@ -49,7 +49,7 @@ def count_players():
     cursor.execute(query)
     row = cursor.fetchone()
     conn.close()
-    return row[0]  # NO. This is a very ugly hack. TODO
+    return row[0]
 
 
 def register_player(name):
@@ -138,8 +138,3 @@ def swiss_pairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-    conn = connect()
-    cursor = conn.cursor()
-    query = ""
-    cursor.execute(query)
-    conn.close()
