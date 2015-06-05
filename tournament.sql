@@ -24,4 +24,4 @@ CREATE TABLE Matches(
 );
 
 CREATE VIEW v_player_summary AS
-  SELECT id, name, wins, matches FROM Players;
+  SELECT * FROM Players;

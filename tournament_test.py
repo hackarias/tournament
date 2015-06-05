@@ -6,17 +6,31 @@ from tournament import *
 
 
 def test_delete_matches():
+    """
+    Calls on delete_matches() that removes all match records from the
+    database.
+    """
     delete_matches()
     print "1. Old matches can be deleted."
 
 
 def test_delete():
+    """
+    Removes all the match and player records from the database.
+    """
     delete_matches()
     delete_players()
     print "2. Player records can be deleted."
 
 
 def test_count():
+    """
+    Removes all the match and player records from the database and checks
+    if count_players() returned zero.
+
+    :raise ValueError: if count_players() doesn't return 0 ValueError
+     is thrown.
+    """
     delete_matches()
     delete_players()
     c = count_players()
@@ -25,21 +39,37 @@ def test_count():
             "countPlayers() should return numeric zero, not string '0'.")
     if c != 0:
         raise ValueError("After deleting, countPlayers should return zero.")
-    print "3. After deleting, countPlayers() returns zero."
+    print "3. After deleting, count_players() returns zero."
 
 
 def test_register():
+    """
+    Removes all the match and player records from the database,
+    then registers a player and check if count_players() returns 1.
+
+    :raise ValueError: if count_players returns anything but 1 a
+    ValueError is thrown.
+    """
     delete_matches()
     delete_players()
     register_player("Chandra Nalaar")
     c = count_players()
     if c != 1:
         raise ValueError(
-            "After one player registers, countPlayers() should be 1.")
-    print "4. After registering a player, countPlayers() returns 1."
+            "After one player registers, count_players() should be 1.")
+    print "4. After registering a player, count_players() returns 1."
 
 
 def test_register_count_delete():
+    """
+    Removes all the match and player records from the database, registers
+    4 players and verifies that they have been added. The players are
+    then deleted.
+
+    :raise ValueError: if count_players() returns anything but 4 after
+    registration, or anything other than 0 after deletion, a ValueError
+    is thrown.
+    """
     delete_matches()
     delete_players()
     register_player("Markov Chaney")
@@ -59,6 +89,14 @@ def test_register_count_delete():
 
 # TODO
 def test_standings_before_matches():
+    """
+    Removes all the match and player records from the database, registers
+    2 players and returns a list of the players and their win records,
+    sorted by wins.
+
+    :raise ValueError: checks if players appears in the table, and have
+    no matches or wins. Throws a ValueError if not.
+    """
     delete_matches()
     delete_players()
     register_player("Melpomene Murray")
@@ -85,6 +123,14 @@ def test_standings_before_matches():
 
 
 def test_report_matches():
+    """
+    Removes all the match and player records from the database, registers
+    players and records matches for each player.
+
+    :raise ValueError: checks if each players has one match recorded,
+    each winner one win recorded, and each loser zero wins recorded.
+    Throws a ValueError if not.
+    """
     delete_matches()
     delete_players()
     register_player("Bruno Walton")
@@ -108,6 +154,13 @@ def test_report_matches():
 
 
 def test_pairings():
+    """
+    Removes all the match and player records from the database, registers
+    4 players and records two matches.
+
+    :raise ValueError: if the winning players haven't gone through to the
+    next run a ValueError is thrown.
+    """
     delete_matches()
     delete_players()
     register_player("Twilight Sparkle")
@@ -139,5 +192,5 @@ if __name__ == '__main__':
     test_register_count_delete()
     test_standings_before_matches()
     test_report_matches()
-    # test_pairings()
+    test_pairings()
     print "Success!  All tests pass!"

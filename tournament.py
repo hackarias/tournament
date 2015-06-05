@@ -60,7 +60,7 @@ def register_player(name):
     should be handled by your SQL database schema, not in your Python code.)
 
     Args:
-      name: the player's full name (need not be unique).
+      :param name: the player's full name (need not be unique).
     """
     conn = connect()
     cursor = conn.cursor()
@@ -98,8 +98,8 @@ def report_match(winner, loser):
     Records the outcome of a single match between two players.
 
     Args:
-      winner:  the id number of the player who won
-      loser:  the id number of the player who lost
+      :param winner:  the id number of the player who won
+      :param loser:  the id number of the player who lost
     """
     conn = connect()
     cursor = conn.cursor()
@@ -111,7 +111,7 @@ def report_match(winner, loser):
 
     # Add 1 to matches and 1 to wins for the winning player.
     cursor.execute("UPDATE Players SET wins=wins + 1 WHERE id = %s",
-        (winner,))
+                   (winner,))
     cursor.execute("UPDATE Players SET matches=matches + 1 WHERE id = %s",
                    (winner,))
     conn.commit()
@@ -138,3 +138,8 @@ def swiss_pairings():
         id2: the second player's unique id
         name2: the second player's name
     """
+    conn = connect()
+    cursor = conn.cursor()
+    query = ""
+    cursor.execute(query)
+    conn.close()
