@@ -36,7 +36,7 @@ def test_count():
     c = count_players()
     if c == '0':
         raise TypeError(
-            "count_players()() should return numeric zero, not string '0'.")
+            "count_players() should return numeric zero, not string '0'.")
     if c != 0:
         raise ValueError("After deleting, count_players() should return zero.")
     print "3. After deleting, count_players() returns zero."
@@ -100,7 +100,7 @@ def test_standings_before_matches():
     delete_players()
     register_player("Melpomene Murray")
     register_player("Randy Schwartz")
-    standings = player_standings()()
+    standings = player_standings()
     if len(standings) < 2:
         raise ValueError(
             "Players should appear in player_standings() even before "
@@ -137,11 +137,11 @@ def test_report_matches():
     register_player("Boots O'Neal")
     register_player("Cathy Burton")
     register_player("Diane Grant")
-    standings = player_standings()()
+    standings = player_standings()
     [id1, id2, id3, id4] = [row[0] for row in standings]
     report_match(id1, id2)
     report_match(id3, id4)
-    standings = player_standings()()
+    standings = player_standings()
     for (i, n, w, m) in standings:
         if m != 1:
             raise ValueError("Each player should have one match recorded.")
@@ -167,7 +167,7 @@ def test_pairings():
     register_player("Fluttershy")
     register_player("Applejack")
     register_player("Pinkie Pie")
-    standings = player_standings()()
+    standings = player_standings()
     [id1, id2, id3, id4] = [row[0] for row in standings]
     report_match(id1, id2)
     report_match(id3, id4)
