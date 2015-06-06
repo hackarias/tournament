@@ -36,9 +36,9 @@ def test_count():
     c = count_players()
     if c == '0':
         raise TypeError(
-            "countPlayers() should return numeric zero, not string '0'.")
+            "count_players()() should return numeric zero, not string '0'.")
     if c != 0:
-        raise ValueError("After deleting, countPlayers should return zero.")
+        raise ValueError("After deleting, count_players() should return zero.")
     print "3. After deleting, count_players() returns zero."
 
 
@@ -79,15 +79,14 @@ def test_register_count_delete():
     c = count_players()
     if c != 4:
         raise ValueError(
-            "After registering four players, countPlayers should be 4.")
+            "After registering four players, count_players() should be 4.")
     delete_players()
     c = count_players()
     if c != 0:
-        raise ValueError("After deleting, countPlayers should return zero.")
+        raise ValueError("After deleting, count_players() should return zero.")
     print "5. Players can be registered and deleted."
 
 
-# TODO
 def test_standings_before_matches():
     """
     Removes all the match and player records from the database, registers
@@ -101,15 +100,16 @@ def test_standings_before_matches():
     delete_players()
     register_player("Melpomene Murray")
     register_player("Randy Schwartz")
-    standings = player_standings()
+    standings = player_standings()()
     if len(standings) < 2:
         raise ValueError(
-            "Players should appear in playerStandings even before "
+            "Players should appear in player_standings() even before "
             "they have played any matches.")
     elif len(standings) > 2:
         raise ValueError("Only registered players should appear in standings.")
     if len(standings[0]) != 4:
-        raise ValueError("Each playerStandings row should have four columns.")
+        raise ValueError(
+            "Each player_standings() row should have four columns.")
     [(id1, name1, wins1, matches1), (id2, name2, wins2, matches2)] = standings
     if matches1 != 0 or matches2 != 0 or wins1 != 0 or wins2 != 0:
         raise ValueError(
@@ -137,11 +137,11 @@ def test_report_matches():
     register_player("Boots O'Neal")
     register_player("Cathy Burton")
     register_player("Diane Grant")
-    standings = player_standings()
+    standings = player_standings()()
     [id1, id2, id3, id4] = [row[0] for row in standings]
     report_match(id1, id2)
     report_match(id3, id4)
-    standings = player_standings()
+    standings = player_standings()()
     for (i, n, w, m) in standings:
         if m != 1:
             raise ValueError("Each player should have one match recorded.")
@@ -167,14 +167,14 @@ def test_pairings():
     register_player("Fluttershy")
     register_player("Applejack")
     register_player("Pinkie Pie")
-    standings = player_standings()
+    standings = player_standings()()
     [id1, id2, id3, id4] = [row[0] for row in standings]
     report_match(id1, id2)
     report_match(id3, id4)
     pairings = swiss_pairings()
     if len(pairings) != 2:
         raise ValueError(
-            "For four players, swissPairings should return two pairs.")
+            "For four players, swiss_pairings() should return two pairs.")
     [(pid1, pname1, pid2, pname2), (pid3, pname3, pid4, pname4)] = pairings
     correct_pairs = set([frozenset([id1, id3]), frozenset([id2, id4])])
     actual_pairs = set([frozenset([pid1, pid2]), frozenset([pid3, pid4])])

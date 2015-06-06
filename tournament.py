@@ -103,23 +103,11 @@ def report_match(winner, loser):
     """
     conn = connect()
     cursor = conn.cursor()
-
-    # create a match
-    query = "INSERT INTO Matches(winner, loser) VALUES(%s, %s)"
-    cursor.execute(query, (winner, loser))
-    conn.commit()
-
-    # Add 1 to matches and 1 to wins for the winning player.
-    cursor.execute("UPDATE Players SET wins=wins + 1 WHERE id = %s",
-                   (winner,))
-    cursor.execute("UPDATE Players SET matches=matches + 1 WHERE id = %s",
-                   (winner,))
-    conn.commit()
-    # Add 1 to matches and leave wins for the losing player.
-    cursor.execute("UPDATE Players SET matches=matches + 1 WHERE id = %s",
-                   (loser,))
+    query = "SELECT report_match(%s, %s)"
+    cursor.execute(query, (winner, loser,))
     conn.commit()
     conn.close()
+    return winner, loser
 
 
 def swiss_pairings():
@@ -138,3 +126,6 @@ def swiss_pairings():
         id2: the second player's unique id
         name2: the second player's name
     """
+    conn = connect()
+    cursor = conn.cursor()
+    query = ("")
