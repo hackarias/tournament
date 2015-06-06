@@ -27,10 +27,11 @@ CREATE VIEW v_player_summary AS
   SELECT * FROM Players
   GROUP BY id;
 
-CREATE FUNCTION report_match(INTEGER, INTEGER) RETURNS SETOF INTEGER AS $$
+CREATE FUNCTION report_match(INTEGER, INTEGER) RETURNS VOID AS $$
   INSERT INTO Matches(winner, loser) VALUES($1, $2);
   UPDATE Players SET wins = wins + 1 WHERE id = $1;
   UPDATE Players SET matches = matches + 1 WHERE id = $1;
   UPDATE Players SET matches = matches +1 WHERE id = $2;
-  SELECT report_match($1, $2);
 $$ LANGUAGE SQL;
+
+
