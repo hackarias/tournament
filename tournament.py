@@ -19,11 +19,14 @@ def delete_matches():
     Remove all the match records from the database.
     """
     conn = connect()
-    cursor = conn.cursor()
-    query = "DELETE FROM Matches"
-    cursor.execute(query)
-    conn.commit()
-    conn.close()
+    try:
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM Matches")
+        conn.commit()
+    except Exception, e:
+        print e.pgerror
+    finally:
+        conn.close()
 
 
 def delete_players():
@@ -32,23 +35,30 @@ def delete_players():
     TODO: delete one or more players exclusively
     """
     conn = connect()
-    cursor = conn.cursor()
-    query = "DELETE FROM Players"
-    cursor.execute(query)
-    conn.commit()
-    conn.close()
+    try:
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM Players")
+        conn.commit()
+    except Exception, e:
+        print e.pgerror
+    finally:
+        conn.close()
 
 
 def count_players():
     """
     Returns the number of players currently registered.
     """
+    global row
     conn = connect()
-    cursor = conn.cursor()
-    query = "SELECT COUNT(id) FROM Players"
-    cursor.execute(query)
-    row = cursor.fetchone()
-    conn.close()
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(id) FROM Players")
+        row = cursor.fetchone()
+    except Exception, e:
+        print e.pgerror
+    finally:
+        conn.close()
     return row[0]
 
 
@@ -63,11 +73,14 @@ def register_player(name):
       :param name: the player's full name (need not be unique).
     """
     conn = connect()
-    cursor = conn.cursor()
-    query = "INSERT INTO Players(name) VALUES (%s)"
-    cursor.execute(query, (name,))
-    conn.commit()
-    conn.close()
+    try:
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO Players(name) VALUES (%s)", (name,))
+        conn.commit()
+    except Exception, e:
+        print e.pgerror
+    finally:
+        conn.close()
 
 
 def player_standings():
@@ -84,12 +97,16 @@ def player_standings():
         wins: the number of matches the player has won
         matches: the number of matches the player has played
     """
+    global standings
     conn = connect()
-    cursor = conn.cursor()
-    query = "SELECT * FROM v_player_summary"
-    cursor.execute(query)
-    standings = cursor.fetchall()
-    conn.close()
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM v_player_summary")
+        standings = cursor.fetchall()
+    except Exception, e:
+        print e.pgerror
+    finally:
+        conn.close()
     return standings
 
 
@@ -102,11 +119,14 @@ def report_match(winner, loser):
       :param loser:  the id number of the player who lost
     """
     conn = connect()
-    cursor = conn.cursor()
-    query = "SELECT report_match(%s, %s)"
-    cursor.execute(query, (winner, loser,))
-    conn.commit()
-    conn.close()
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT report_match(%s, %s)", (winner, loser,))
+        conn.commit()
+    except Exception, e:
+        print e.pgerror
+    finally:
+        conn.close()
     return winner, loser
 
 
@@ -126,6 +146,3 @@ def swiss_pairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-    conn = connect()
-    cursor = conn.cursor()
-    query = ("")

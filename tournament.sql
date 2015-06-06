@@ -11,7 +11,7 @@ CREATE DATABASE tournament;
 \c tournament;
 
 CREATE TABLE Players(
-  id      SERIAL PRIMARY KEY,
+  id      SERIAL PRIMARY KEY DELETE ,
   name    TEXT,
   wins    INT DEFAULT 0,
   matches INT DEFAULT 0
@@ -33,5 +33,4 @@ CREATE FUNCTION report_match(INTEGER, INTEGER) RETURNS VOID AS $$
   UPDATE Players SET matches = matches + 1 WHERE id = $1;
   UPDATE Players SET matches = matches +1 WHERE id = $2;
 $$ LANGUAGE SQL;
-
 
