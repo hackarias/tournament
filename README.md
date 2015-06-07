@@ -17,7 +17,7 @@ This README would normally document whatever steps are necessary to get your app
 In the reporistory folder, run **chmod a+x pg_config.sh && sudo ./pg_config.sh**.
 This will:
 - Update or install postgresql, python-psycopg2 and python-pip depending on if you have them installed already or not.
-- Create a postgres user amd the tournament database.
+- Create a postgres user and the tournament database.
 - Run all unit tests.
 
 #### How to run unit tests manually ####
