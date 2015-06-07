@@ -25,3 +25,6 @@ cd /vagrant/
 python tournament/tournament_test.py
 
 ~~~~
+
+#### Sources ####
+SQL functions: http://www.postgresql.org/docs/9.4/static/xfunc-sql.html
