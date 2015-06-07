@@ -24,7 +24,7 @@ def delete_matches():
         cursor.execute("DELETE FROM Matches")
         conn.commit()
     except Exception, e:
-        print e.pgerror
+        print e.message
     finally:
         conn.close()
 
@@ -40,7 +40,7 @@ def delete_players():
         cursor.execute("DELETE FROM Players")
         conn.commit()
     except Exception, e:
-        print e.pgerror
+        print e.message
     finally:
         conn.close()
 
@@ -56,7 +56,7 @@ def count_players():
         cursor.execute("SELECT COUNT(id) FROM Players")
         row = cursor.fetchone()
     except Exception, e:
-        print e.pgerror
+        print e.message
     finally:
         conn.close()
     return row[0]
@@ -78,7 +78,7 @@ def register_player(name):
         cursor.execute("INSERT INTO Players(name) VALUES (%s)", (name,))
         conn.commit()
     except Exception, e:
-        print e.pgerror
+        print e.message
     finally:
         conn.close()
 
@@ -104,7 +104,7 @@ def player_standings():
         cursor.execute("SELECT * FROM v_player_summary")
         standings = cursor.fetchall()
     except Exception, e:
-        print e.pgerror
+        print e.message
     finally:
         conn.close()
     return standings
@@ -124,7 +124,7 @@ def report_match(winner, loser):
         cursor.execute("SELECT report_match(%s, %s)", (winner, loser,))
         conn.commit()
     except Exception, e:
-        print e.pgerror
+        print e.message
     finally:
         conn.close()
     return winner, loser
@@ -146,3 +146,19 @@ def swiss_pairings():
         id2: the second player's unique id
         name2: the second player's name
     """
+    conn = connect()
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT id,name from v_player_summary")
+        players = cursor.fetchall()
+    except Exception, e:
+        print e.message
+    finally:
+        pairings = []
+        while players:
+            pairings.append(players[0] + players[1])
+            del players[0:2]
+        conn.close()
+    return pairings
+
+
