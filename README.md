@@ -1,29 +1,24 @@
-# README #
+# Udacity FSND Project 2 #
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* This is the basic version of the final assignment for the Introduction to Relational Databases Udacity course. No extra credit criterias have been met in this version.
+* Version 1.0.
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+#### Dependencies: ####
+* Vagrant. Please follow the [Vagrant installation guide](https://docs.vagrantup.com/v2/installation/) before proceeding.
+* PostgreSQL (with psycopg2). Please see configuration & execution steps below for instructions.
 
-### Contribution guidelines ###
+#### Configuration & Execution####
+In the reporistory folder, run **chmod a+x pg_script.sh && sudo ./pg_script.sh**.
+This will:
+- Update or install postgresql, python-psycopg2 and python-pip depending on if you have them installed already or not.
+- Create a postgres user amd the tournament database.
+- Run all unit tests.
 
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+#### How to run unit tests manually ####
+In this repository folder, run: **python vagrant/tournament/tournament_test.py**.
