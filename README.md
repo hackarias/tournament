@@ -14,7 +14,7 @@ This README would normally document whatever steps are necessary to get your app
 * PostgreSQL (with psycopg2). Please see configuration & execution steps below for instructions.
 
 #### Configuration & Execution####
-In the reporistory folder, run **chmod a+x pg_script.sh && sudo ./pg_script.sh**.
+In the reporistory folder, run **chmod a+x pg_config.sh && sudo ./pg_config.sh**.
 This will:
 - Update or install postgresql, python-psycopg2 and python-pip depending on if you have them installed already or not.
 - Create a postgres user amd the tournament database.
