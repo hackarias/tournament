@@ -8,17 +8,16 @@ This README would normally document whatever steps are necessary to get your app
 * Version 1.0.
 
 ### How do I get set up? ###
+~~~~
+git clone git@bitbucket.org:gloison/fsnd-tournament.git
+cd fsnd-tournament/vagrant/
+vagrant up
+~~~~
 
 #### Dependencies: ####
-* Vagrant. Please follow the [Vagrant installation guide](https://docs.vagrantup.com/v2/installation/) before proceeding.
-* PostgreSQL (with psycopg2). Please see configuration & execution steps below for instructions.
+**Vagrant**. Please follow the [Vagrant installation guide](https://docs.vagrantup.com/v2/installation/) before proceeding.
 
-#### Configuration & Execution####
-In the reporistory folder, run **chmod a+x pg_config.sh && sudo ./pg_config.sh**.
-This will:
-- Update or install postgresql, python-psycopg2 and python-pip depending on if you have them installed already or not.
-- Create a postgres user and the tournament database.
-- Run all unit tests.
+This will setup the vagrant VM, tournament database and run the unit tests.
 
 #### How to run unit tests manually ####
-In this repository folder, run: **python vagrant/tournament/tournament_test.py**.
+In this repository folder, run: **python /vagrant/tournament/tournament_test.py**.
