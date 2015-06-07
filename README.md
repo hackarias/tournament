@@ -19,8 +19,9 @@ git clone https://github.com/zackgus/fsnd--tournament.git && cd fsnd--tournament
 #### How to run unit tests manually ####
 In your terminal:
 ~~~~
-cd fsnd--tournament/vagrant
+cd fsnd--tournament/vagrant/
 vagrant ssh
 cd /vagrant/
 python tournament/tournament_test.py
+
 ~~~~
