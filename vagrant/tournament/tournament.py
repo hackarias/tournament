@@ -6,27 +6,31 @@
 import psycopg2
 
 
-def connect():
+def connect(database_name="tournament"):
     """
     Connect to the PostgreSQL database.  Returns a database connection.
+    :param database_name: name of the database.
     """
-    conn_string = "dbname=tournament"
-    return psycopg2.connect(conn_string)
+    try:
+        db = psycopg2.connect("dbname={}".format(database_name))
+        cursor = db.cursor()
+        return db, cursor
+    except Exception, e:
+        raise e
 
 
 def delete_matches():
     """
     Remove all the match records from the database.
     """
-    conn = connect()
+    db, cursor = connect()
     try:
-        cursor = conn.cursor()
-        cursor.execute("DELETE FROM Matches")
-        conn.commit()
+        cursor.execute("TRUNCATE Matches")
+        db.commit()
     except Exception, e:
-        print e.message
+        raise e
     finally:
-        conn.close()
+        db.close()
 
 
 def delete_players():
@@ -34,15 +38,14 @@ def delete_players():
     Remove all the player records from the database.
     TODO: delete one or more players exclusively
     """
-    conn = connect()
+    db, cursor = connect()
     try:
-        cursor = conn.cursor()
         cursor.execute("DELETE FROM Players")
-        conn.commit()
+        db.commit()
     except Exception, e:
-        print e.message
+        raise e
     finally:
-        conn.close()
+        db.close()
 
 
 def count_players():
@@ -50,15 +53,14 @@ def count_players():
     Returns the number of players currently registered.
     """
     global row
-    conn = connect()
+    db, cursor = connect()
     try:
-        cursor = conn.cursor()
         cursor.execute("SELECT COUNT(id) FROM Players")
         row = cursor.fetchone()
     except Exception, e:
-        print e.message
+        raise e
     finally:
-        conn.close()
+        db.close()
     return row[0]
 
 
@@ -72,15 +74,16 @@ def register_player(name):
     Args:
       :param name: the player's full name (need not be unique).
     """
-    conn = connect()
+    db, cursor = connect()
     try:
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO Players(name) VALUES (%s)", (name,))
-        conn.commit()
+        query = "INSERT INTO Players(name) VALUES (%s)"
+        parameter = (name,)
+        cursor.execute(query, parameter)
+        db.commit()
     except Exception, e:
-        print e.message
+        raise e
     finally:
-        conn.close()
+        db.close()
 
 
 def player_standings():
@@ -98,15 +101,14 @@ def player_standings():
         matches: the number of matches the player has played
     """
     global standings
-    conn = connect()
+    db, cursor = connect()
     try:
-        cursor = conn.cursor()
         cursor.execute("SELECT * FROM v_player_summary")
         standings = cursor.fetchall()
     except Exception, e:
-        print e.message
+        raise e
     finally:
-        conn.close()
+        db.close()
     return standings
 
 
@@ -118,15 +120,16 @@ def report_match(winner, loser):
       :param winner:  the id number of the player who won
       :param loser:  the id number of the player who lost
     """
-    conn = connect()
+    db, cursor = connect()
     try:
-        cursor = conn.cursor()
-        cursor.execute("SELECT report_match(%s, %s)", (winner, loser,))
-        conn.commit()
+        query = "SELECT report_match(%s, %s)"
+        parameter = (winner, loser,)
+        cursor.execute(query, parameter)
+        db.commit()
     except Exception, e:
-        print e.message
+        raise e
     finally:
-        conn.close()
+        db.close()
     return winner, loser
 
 
@@ -146,17 +149,16 @@ def swiss_pairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-    conn = connect()
+    db, cursor = connect()
     try:
-        cursor = conn.cursor()
         cursor.execute("SELECT id,name from v_player_summary")
         players = cursor.fetchall()
     except Exception, e:
-        print e.message
+        raise e
     finally:
         pairings = []
         while players:
             pairings.append(players[0] + players[1])
             del players[0:2]
-        conn.close()
+        db.close()
     return pairings
