@@ -13,7 +13,7 @@ This README would normally document whatever steps are necessary to get your app
 ### How do I get set up? ###
 Paste the following in your terminal(make sure to have navigated to where you want to clone the repository): 
 ~~~~
-git clone git@bitbucket.org:gloison/fsnd-tournament.git && cd fsnd-tournament/vagrant/ && vagrant up
+git clone <url> && cd fsnd-tournament/vagrant/ && vagrant up
 ~~~~
 
 #### How to run unit tests manually ####
