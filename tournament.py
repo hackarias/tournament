@@ -132,7 +132,7 @@ def report_match(winner, loser):
 
 def swiss_pairings():
     """
-    Returns a list of pairs of players for the next round of a match.
+    Returns a list of tuples of players and their ID.
 
     Assuming that there are an even number of players registered, each player
     appears exactly once in the pairings.  Each player is paired with another
@@ -160,5 +160,3 @@ def swiss_pairings():
             del players[0:2]
         conn.close()
     return pairings
-
-

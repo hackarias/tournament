@@ -26,7 +26,7 @@ CREATE TABLE Players(
 );
 
 /*
- Creating the table containing the matches. Each match has an id, a
+  Creating the table containing the matches. Each match has an id, a
   winner and a loser.
   */
 CREATE TABLE Matches(
@@ -36,15 +36,18 @@ CREATE TABLE Matches(
 );
 
 /*
- Creating view for summary of players. It lists all content from the Players table, for each player.
+  Creating view for summary of players. It lists all content from the
+  Players table, for each player.
   */
 CREATE VIEW v_player_summary AS
   SELECT * FROM Players
   GROUP BY id
-  order by wins desc;
+  ORDER BY wins desc;
 
 /*
-Creating a function for reporting matches. It takes two player IDs and updates the players table with results. The first value passed in is the winner, and the second the loser.
+  Creating a function for reporting matches. It takes two player IDs and
+  updates the players table with results. The first value passed in is
+  the winner, and the second the loser.
  */
 CREATE FUNCTION report_match(winner INTEGER, loser INTEGER) RETURNS VOID AS $$
   INSERT INTO Matches(winner, loser) VALUES(winner, loser);
