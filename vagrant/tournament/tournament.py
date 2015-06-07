@@ -8,7 +8,7 @@ import psycopg2
 
 def connect(database_name="tournament"):
     """
-    Connect to the PostgreSQL database.  Returns a database connection.
+    Connect to the PostgreSQL database.
     :param database_name: name of the database.
     """
     try:
@@ -36,7 +36,6 @@ def delete_matches():
 def delete_players():
     """
     Remove all the player records from the database.
-    TODO: delete one or more players exclusively
     """
     db, cursor = connect()
     try:
@@ -68,11 +67,8 @@ def register_player(name):
     """
     Adds a player to the tournament database.
 
-    The database assigns a unique serial id number for the player.  (This
-    should be handled by your SQL database schema, not in your Python code.)
-
     Args:
-      :param name: the player's full name (need not be unique).
+      :param name: the players name.
     """
     db, cursor = connect()
     try:
@@ -89,9 +85,6 @@ def register_player(name):
 def player_standings():
     """
     Returns a list of the players and their win records, sorted by wins.
-
-    The first entry in the list should be the player in first place, or a
-    player tied for first place if there is currently a tie.
 
     Returns:
       A list of tuples, each of which contains (id, name, wins, matches):
@@ -117,8 +110,8 @@ def report_match(winner, loser):
     Records the outcome of a single match between two players.
 
     Args:
-      :param winner:  the id number of the player who won
-      :param loser:  the id number of the player who lost
+      :param winner: the id number of the player who won
+      :param loser: the id number of the player who lost
     """
     db, cursor = connect()
     try:
