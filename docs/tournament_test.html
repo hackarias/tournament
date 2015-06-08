@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>tournament_test.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>tournament_test.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Test cases for tournament.py</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">tournament</span> <span class="kn">import</span> <span class="o">*</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Calls on delete_matches() that removes all match records from the
+database.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_delete_matches</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">delete_matches</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">&quot;1. Old matches can be deleted.&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Removes all the match and player records from the database.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_delete</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">delete_matches</span><span class="p">()</span>
+    <span class="n">delete_players</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">&quot;2. Player records can be deleted.&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Removes all the match and player records from the database and checks
+if count_players() returned zero.</p>
+<p>:raise ValueError: if count_players() doesn't return 0 ValueError
+ is thrown.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_count</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">delete_matches</span><span class="p">()</span>
+    <span class="n">delete_players</span><span class="p">()</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">count_players</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s">&#39;0&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="s">&quot;count_players() should return numeric zero, not string &#39;0&#39;.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;After deleting, count_players() should return zero.&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;3. After deleting, count_players() returns zero.&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>Removes all the match and player records from the database,
+then registers a player and check if count_players() returns 1.</p>
+<p>:raise ValueError: if count_players returns anything but 1 a
+ValueError is thrown.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_register</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">delete_matches</span><span class="p">()</span>
+    <span class="n">delete_players</span><span class="p">()</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Chandra Nalaar&quot;</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">count_players</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s">&quot;After one player registers, count_players() should be 1.&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;4. After registering a player, count_players() returns 1.&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>Removes all the match and player records from the database, registers
+4 players and verifies that they have been added. The players are
+then deleted.</p>
+<p>:raise ValueError: if count_players() returns anything but 4 after
+registration, or anything other than 0 after deletion, a ValueError
+is thrown.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_register_count_delete</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">delete_matches</span><span class="p">()</span>
+    <span class="n">delete_players</span><span class="p">()</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Markov Chaney&quot;</span><span class="p">)</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Joe Malik&quot;</span><span class="p">)</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Mao Tsu-hsi&quot;</span><span class="p">)</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Atlanta Hope&quot;</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">count_players</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s">&quot;After registering four players, count_players() should be 4.&quot;</span><span class="p">)</span>
+    <span class="n">delete_players</span><span class="p">()</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">count_players</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;After deleting, count_players() should return zero.&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;5. Players can be registered and deleted.&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>Removes all the match and player records from the database, registers
+2 players and returns a list of the players and their win records,
+sorted by wins.</p>
+<p>:raise ValueError: checks if players appears in the table, and have
+no matches or wins. Throws a ValueError if not.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_standings_before_matches</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">delete_matches</span><span class="p">()</span>
+    <span class="n">delete_players</span><span class="p">()</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Melpomene Murray&quot;</span><span class="p">)</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Randy Schwartz&quot;</span><span class="p">)</span>
+    <span class="n">standings</span> <span class="o">=</span> <span class="n">player_standings</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">standings</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s">&quot;Players should appear in player_standings() even before &quot;</span>
+            <span class="s">&quot;they have played any matches.&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">standings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Only registered players should appear in standings.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">standings</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s">&quot;Each player_standings() row should have four columns.&quot;</span><span class="p">)</span>
+    <span class="p">[(</span><span class="n">id1</span><span class="p">,</span> <span class="n">name1</span><span class="p">,</span> <span class="n">wins1</span><span class="p">,</span> <span class="n">matches1</span><span class="p">),</span> <span class="p">(</span><span class="n">id2</span><span class="p">,</span> <span class="n">name2</span><span class="p">,</span> <span class="n">wins2</span><span class="p">,</span> <span class="n">matches2</span><span class="p">)]</span> <span class="o">=</span> <span class="n">standings</span>
+    <span class="k">if</span> <span class="n">matches1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">matches2</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">wins1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">wins2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s">&quot;Newly registered players should have no matches or wins.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">set</span><span class="p">([</span><span class="n">name1</span><span class="p">,</span> <span class="n">name2</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">([</span><span class="s">&quot;Melpomene Murray&quot;</span><span class="p">,</span> <span class="s">&quot;Randy Schwartz&quot;</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s">&quot;Registered players&#39; names should appear in standings, &quot;</span>
+            <span class="s">&quot;even if they have no matches played.&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;6. Newly registered players appear in the standings with no &quot;</span> \
+          <span class="s">&quot;matches.&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>Removes all the match and player records from the database, registers
+players and records matches for each player.</p>
+<p>:raise ValueError: checks if each players has one match recorded,
+each winner one win recorded, and each loser zero wins recorded.
+Throws a ValueError if not.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_report_matches</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">delete_matches</span><span class="p">()</span>
+    <span class="n">delete_players</span><span class="p">()</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Bruno Walton&quot;</span><span class="p">)</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Boots O&#39;Neal&quot;</span><span class="p">)</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Cathy Burton&quot;</span><span class="p">)</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Diane Grant&quot;</span><span class="p">)</span>
+    <span class="n">standings</span> <span class="o">=</span> <span class="n">player_standings</span><span class="p">()</span>
+    <span class="p">[</span><span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">,</span> <span class="n">id3</span><span class="p">,</span> <span class="n">id4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">standings</span><span class="p">]</span>
+    <span class="n">report_match</span><span class="p">(</span><span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">)</span>
+    <span class="n">report_match</span><span class="p">(</span><span class="n">id3</span><span class="p">,</span> <span class="n">id4</span><span class="p">)</span>
+    <span class="n">standings</span> <span class="o">=</span> <span class="n">player_standings</span><span class="p">()</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="ow">in</span> <span class="n">standings</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Each player should have one match recorded.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="n">id1</span><span class="p">,</span> <span class="n">id3</span><span class="p">)</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Each match winner should have one win recorded.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="n">id2</span><span class="p">,</span> <span class="n">id4</span><span class="p">)</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s">&quot;Each match loser should have zero wins recorded.&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;7. After a match, players have updated standings.&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <p>Removes all the match and player records from the database, registers
+4 players and records two matches.</p>
+<p>:raise ValueError: if the winning players haven't gone through to the
+next run a ValueError is thrown.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_pairings</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">delete_matches</span><span class="p">()</span>
+    <span class="n">delete_players</span><span class="p">()</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Twilight Sparkle&quot;</span><span class="p">)</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Fluttershy&quot;</span><span class="p">)</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Applejack&quot;</span><span class="p">)</span>
+    <span class="n">register_player</span><span class="p">(</span><span class="s">&quot;Pinkie Pie&quot;</span><span class="p">)</span>
+    <span class="n">standings</span> <span class="o">=</span> <span class="n">player_standings</span><span class="p">()</span>
+    <span class="p">[</span><span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">,</span> <span class="n">id3</span><span class="p">,</span> <span class="n">id4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">standings</span><span class="p">]</span>
+    <span class="n">report_match</span><span class="p">(</span><span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">)</span>
+    <span class="n">report_match</span><span class="p">(</span><span class="n">id3</span><span class="p">,</span> <span class="n">id4</span><span class="p">)</span>
+    <span class="n">pairings</span> <span class="o">=</span> <span class="n">swiss_pairings</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pairings</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s">&quot;For four players, swiss_pairings() should return two pairs.&quot;</span><span class="p">)</span>
+    <span class="p">[(</span><span class="n">pid1</span><span class="p">,</span> <span class="n">pname1</span><span class="p">,</span> <span class="n">pid2</span><span class="p">,</span> <span class="n">pname2</span><span class="p">),</span> <span class="p">(</span><span class="n">pid3</span><span class="p">,</span> <span class="n">pname3</span><span class="p">,</span> <span class="n">pid4</span><span class="p">,</span> <span class="n">pname4</span><span class="p">)]</span> <span class="o">=</span> <span class="n">pairings</span>
+    <span class="n">correct_pairs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="nb">frozenset</span><span class="p">([</span><span class="n">id1</span><span class="p">,</span> <span class="n">id3</span><span class="p">]),</span> <span class="nb">frozenset</span><span class="p">([</span><span class="n">id2</span><span class="p">,</span> <span class="n">id4</span><span class="p">])])</span>
+    <span class="n">actual_pairs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="nb">frozenset</span><span class="p">([</span><span class="n">pid1</span><span class="p">,</span> <span class="n">pid2</span><span class="p">]),</span> <span class="nb">frozenset</span><span class="p">([</span><span class="n">pid3</span><span class="p">,</span> <span class="n">pid4</span><span class="p">])])</span>
+    <span class="k">if</span> <span class="n">correct_pairs</span> <span class="o">!=</span> <span class="n">actual_pairs</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s">&quot;After one match, players with one win should be paired.&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;8. After one match, players with one win are paired.&quot;</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">test_delete_matches</span><span class="p">()</span>
+    <span class="n">test_delete</span><span class="p">()</span>
+    <span class="n">test_count</span><span class="p">()</span>
+    <span class="n">test_register</span><span class="p">()</span>
+    <span class="n">test_register_count_delete</span><span class="p">()</span>
+    <span class="n">test_standings_before_matches</span><span class="p">()</span>
+    <span class="n">test_report_matches</span><span class="p">()</span>
+    <span class="n">test_pairings</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">&quot;Success!  All tests pass!&quot;</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
