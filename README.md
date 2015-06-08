@@ -5,9 +5,10 @@
 This project contains an applications that runs a swiss style tournament. 
 
 This is the basic version of the final assignment for the Introduction to Relational Databases Udacity course. No extra credit criterias have been met in this version.
+Please refer to the **doc/** folder for an overview of the code and what it does. 
 **Version 1.0.**
 
-| File | Description |
+| Filen name | Description |
 |------|-------------|
 |t**ournament.sql**| This is the database where matches and players are recorded and stored.|
 |**tournament.py**| This file is the Python file containing the functions that executes the tournament.|
