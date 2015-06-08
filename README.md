@@ -5,7 +5,8 @@
 This project contains an applications that runs a swiss style tournament. 
 
 This is the basic version of the final assignment for the Introduction to Relational Databases Udacity course. No extra credit criterias have been met in this version.
-Please refer to the **doc/** folder for an overview of the code and what it does. 
+
+Please refer to the **vagrant/doc/** folder for an overview of the code and what it does. 
 **Version 1.0.**
 
 | Filen name | Description |
