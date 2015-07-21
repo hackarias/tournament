@@ -1,4 +1,4 @@
-# Udacity FSND Project 2 #
+# Tournament #
 
 ### What is this repository for? ###
 
@@ -22,8 +22,8 @@ Please refer to the **vagrant/doc/** folder for an overview of the code and what
 ### How do I get set up? ###
 Paste the following in your terminal(make sure to have navigated to where you want to clone the repository): 
 ~~~~
-git clone https://github.com/zackgus/fsnd--tournament.git
-cd fsnd--tournament/vagrant/
+git clone https://github.com/zackgus/tournament.git
+cd tournament/vagrant/
 vagrant up
 ~~~~
 
@@ -48,7 +48,7 @@ Here are some example code. The exmple below is run in the Python shell in this 
 To run the unit tests manually, simply log in to the Vagrant VM by typing the following in your terminal.
 Make sure you're in the correct folder:
 ~~~~
-cd fsnd--tournament/vagrant/
+cd tournament/vagrant/
 ~~~~
 Then sign in to the Vagrant VM:
 ~~~~
